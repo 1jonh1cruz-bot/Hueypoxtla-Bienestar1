@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Área de Bienestar – Ayuntamiento de Hueypoxtla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       VARIABLES & RESET
+    ========================================================= */
+   
+    :root {
+      --verde-oscuro:  #1a4731;
+      --verde-medio:   #2d6a4f;
+      --verde-claro:   #40916c;
+      --verde-suave:   #d8f3dc;
+      --acento:        #f4a261;
+      --acento-oscuro: #e76f51;
+      --blanco:        #f9fafb;
+      --gris-100:      #f3f4f6;
+      --gris-200:      #e5e7eb;
+      --gris-400:      #9ca3af;
+      --gris-700:      #374151;
+      --texto:         #111827;
+      --sombra-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --sombra-md: 0 4px 12px rgba(0,0,0,.10);
+      --sombra-lg: 0 10px 30px rgba(0,0,0,.12);
+      --radio:    12px;
+      --radio-lg: 20px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* =========================================================
+       AVISO INFORMATIVO
+    ========================================================= */
+    .aviso-top {
+      background: var(--verde-oscuro);
+      color: #d8f3dc;
+      text-align: center;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: .55rem 1rem;
+    }
+
+    /* =========================================================
+       HEADER / NAV
+    ========================================================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 2px solid var(--verde-suave);
+      box-shadow: var(--sombra-sm);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.5rem;
+      gap: 1rem;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: .9rem; }
+    .logo-icon {
+      width: 48px; height: 48px;
+      background: var(--verde-medio);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;}
+
+      .logo-icon img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+   
+    .logo-text span {
+      font-size: .75rem;
+      color: var(--gris-400);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    nav { display: flex; align-items: center; gap: .25rem; }
+    nav a {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--gris-700);
+      padding: .45rem .8rem;
+      border-radius: 6px;
+      transition: background .2s, color .2s;
+    }
+    nav a:hover { background: var(--verde-suave); color: var(--verde-oscuro); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: .5rem;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--verde-oscuro);
+      border-radius: 2px;
+      transition: transform .3s;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-top: 1px solid var(--gris-200);
+      padding: .5rem 1rem 1rem;
+    }
+    .mobile-nav a {
+      padding: .7rem .5rem;
+      border-bottom: 1px solid var(--gris-100);
+      font-weight: 500;
+      color: var(--gris-700);
+    }
+    .mobile-nav.open { display: flex; }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+  background:
+    linear-gradient(rgba(26,71,49,0.75), rgba(45,106,79,0.75)),
+    url('./img/logo2.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #fff;
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+
+
+ .hero-content{
+  position: relative;
+
+  max-width: 720px;
+  margin: 0 auto;
+
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,.38),
+    rgba(0,0,0,.12)
+  );
+
+  backdrop-filter: blur(3px);
+
+  padding: 1.4rem 2rem;
+
+  border-radius: 24px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+@media (max-width: 768px){
+
+  .hero-content{
+    padding: 18px 15px;
+    border-radius: 20px;
+  }
+
+}
+    .hero-img{
+  width: 230px;
+  max-width: 90%;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar{
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-10px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+}
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #d8f3dc;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1{
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,.45);
+}
+    .hero p{
+  font-size: 1.15rem;
+  line-height: 1.8;
+  opacity: .96;
+  max-width: 580px;
+  margin: 0 auto 2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url('./img/logo2.png');
+  background-repeat: no-repeat;
+
+  background-position: center;
+  background-size: 110% auto;
+
+  opacity: 0.12;
+
+  pointer-events: none;
+}
+    .btn-primary {
+      background: var(--acento);
+      color: #fff;
+      font-weight: 600;
+      padding: .75rem 1.8rem;
+      border-radius: 8px;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 14px rgba(0,0,0,.2);
+    }
+    .btn-primary:hover { background: var(--acento-oscuro); transform: translateY(-1px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.5);
+      color: #fff;
+      font-weight: 600;
+      padding: .75rem 1.8rem;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+    /* =========================================================
+       SECCIÓN GENÉRICA
+    ========================================================= */
+    section { padding: 4.5rem 1.5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--verde-oscuro);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--gris-700);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* =========================================================
+       TARJETAS MISIÓN
+    ========================================================= */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .mission-card {
+      background: #fff;
+      border: 1px solid var(--gris-200);
+      border-radius: var(--radio-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--sombra-sm);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .mission-card:hover { box-shadow: var(--sombra-md); transform: translateY(-3px); }
+    .mission-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .mission-card h3 { font-weight: 600; margin-bottom: .4rem; color: var(--verde-oscuro); }
+    .mission-card p { font-size: .9rem; color: var(--gris-700); }
+
+    /* =========================================================
+       CATÁLOGO
+    ========================================================= */
+    #productos { background: var(--gris-100); }
+    .cat-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 2rem;
+    }
+    .cat-tab {
+      padding: .5rem 1.1rem;
+      border-radius: 20px;
+      border: 2px solid var(--gris-200);
+      background: #fff;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      color: var(--gris-700);
+    }
+    .cat-tab.active, .cat-tab:hover {
+      background: var(--verde-medio);
+      border-color: var(--verde-medio);
+      color: #fff;
+    }
+    .catalog-section { display: none; }
+    .catalog-section.active { display: block; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    
+   .product-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transition: all .3s ease;
+}
+   .product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.15);
+}
+    .product-card-top {
+      background: var(--verde-suave);
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      min-height: 90px;
+    }
+    
+.product-card-top {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.product-card-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+/* EFECTO HOVER */
+.product-card:hover img {
+  transform: scale(1.08);
+}
+    .product-card-body { padding: 1rem 1.1rem; }
+    .product-card-body h4 { font-weight: 600; font-size: .95rem; margin-bottom: .3rem; color: var(--texto); }
+    .product-price {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      color: var(--verde-oscuro);
+      font-weight: 700;
+    }
+.product-extra {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  padding: 0 1rem;
+  font-size: 0.85rem;
+  color: var(--gris-700);
+  background: #f9fafb;
+}
+
+.product-card.active .product-extra {
+  max-height: 250px;
+  padding: 1rem;
+  border-top: 1px solid var(--gris-200);
+}
+
+.product-card {
+  cursor: pointer;
+}
+
+.product-extra ul {
+  padding-left: 18px;
+  margin-top: 8px;
+}
+
+.product-extra li {
+  margin-bottom: 4px;
+}
+    /* =========================================================
+       PROCESO DE COMPRA
+    ========================================================= */
+    .steps { display: flex; flex-direction: column; gap: 1.25rem; }
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid var(--gris-200);
+      border-radius: var(--radio);
+      padding: 1.5rem;
+      box-shadow: var(--sombra-sm);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--verde-medio);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .step h3 { font-weight: 600; color: var(--verde-oscuro); margin-bottom: .3rem; }
+    .step p, .step ul { font-size: .9rem; color: var(--gris-700); }
+    .step ul { padding-left: 1rem; list-style: disc; margin-top: .35rem; }
+    .step ul li { margin-bottom: .2rem; }
+
+    /* =========================================================
+       APOYOS
+    ========================================================= */
+    #apoyos { background: var(--verde-oscuro); color: #fff; }
+    #apoyos .section-title { color: #d8f3dc; }
+    #apoyos .section-label { color: var(--acento); }
+    #apoyos .section-sub { color: rgba(255,255,255,.7); }
+    .apoyos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .apoyo-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radio-lg);
+      padding: 1.75rem;
+      transition: background .2s;
+    }
+    .apoyo-card:hover { background: rgba(255,255,255,.12); }
+    .apoyo-icon { font-size: 2rem; margin-bottom: .8rem; }
+    .apoyo-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: .4rem; color: #d8f3dc; }
+    .apoyo-card p { font-size: .88rem; opacity: .78; }
+
+    /* =========================================================
+       FAQ
+    ========================================================= */
+    #faq { background: var(--gris-100); }
+    .faq-list { display: flex; flex-direction: column; gap: .75rem; max-width: 820px; }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--gris-200);
+      border-radius: var(--radio);
+      overflow: hidden;
+      box-shadow: var(--sombra-sm);
+    }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.4rem;
+      font-weight: 600;
+      font-size: .95rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-align: left;
+      color: var(--texto);
+    }
+    .faq-q span.icon {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      background: var(--verde-suave);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-q span.icon { transform: rotate(45deg); background: var(--verde-claro); color: #fff; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      font-size: .9rem;
+      color: var(--gris-700);
+      padding: 0 1.4rem;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 1.4rem 1.1rem; }
+
+    /* =========================================================
+       CONTACTO
+    ========================================================= */
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+    .contacto-card {
+      background: var(--verde-suave);
+      border-radius: var(--radio);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .contacto-card .c-icon { font-size: 2rem; margin-bottom: .6rem; }
+    .contacto-card h4 { font-weight: 600; color: var(--verde-oscuro); margin-bottom: .3rem; }
+    .contacto-card p { font-size: .88rem; color: var(--gris-700); }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    footer {
+      background: var(--verde-oscuro);
+      color: rgba(255,255,255,.65);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: .82rem;
+    }
+    footer strong { color: #d8f3dc; }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 500px) {
+      .hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== AVISO ===================== -->
+<div class="aviso-top">
+  ⚠️ Este sitio es únicamente informativo. No se realizan pagos en línea.
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="nav-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <!-- Escudo simplificado -->
+        <img src="img/logo.png" alt="logo">
+      </div>
+      <div class="logo-text">
+        <strong>Ayuntamiento de Hueypoxtla</strong>
+        <span>Área de Bienestar</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#proceso">Proceso de Compra</a>
+      <a href="#apoyos">Apoyos</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+    <a href="#productos" onclick="toggleMenu()">Productos</a>
+    <a href="#proceso" onclick="toggleMenu()">Proceso de Compra</a>
+    <a href="#apoyos" onclick="toggleMenu()">Apoyos</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge">Municipio de Hueypoxtla · Estado de México</div>
+    <h1>Apoyos y productos al<br>alcance de tu comunidad</h1>
+    <p>El Área de Bienestar del Ayuntamiento de Hueypoxtla pone a tu disposición productos de calidad a precios accesibles y programas de apoyo social para mejorar la calidad de vida de las familias del municipio.</p>
+    <div class="hero-ctas">
+      <a href="#productos" class="btn-primary">Ver catálogo de productos</a>
+      <a href="#proceso" class="btn-outline">¿Cómo adquirir?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MISIÓN ===================== -->
+<section id="mision">
+  <div class="section-inner">
+    <p class="section-label">Nuestra misión</p>
+    <h2 class="section-title">Bienestar para todas las familias</h2>
+    <p class="section-sub">Trabajamos para garantizar el acceso a productos de calidad y programas sociales que fortalezcan el desarrollo de la comunidad.</p>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <div class="mission-icon" style="background:#d8f3dc;">🏠</div>
+        <h3>Acceso a productos</h3>
+        <p>Ofrecemos artículos del hogar, infraestructura y equipamiento con precios subsidiados y pagos flexibles.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon" style="background:#fde8d8;">💳</div>
+        <h3>Pago en parcialidades</h3>
+        <p>Facilitamos la adquisición a través de pagos acordados según las posibilidades de cada familia.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon" style="background:#dbeafe;">🤝</div>
+        <h3>Apoyos sociales</h3>
+        <p>Microcréditos, atención ante desastres y programas sociales del municipio al servicio de la comunidad.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon" style="background:#fef9c3;">📦</div>
+        <h3>Entrega mensual</h3>
+        <p>Los productos se entregan a finales de cada mes, coordinados directamente con el área de bienestar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CATÁLOGO ===================== -->
+<section id="productos">
+  <div class="section-inner">
+    <p class="section-label">Catálogo informativo 2024</p>
+    <h2 class="section-title">Productos disponibles</h2>
+    <p class="section-sub">Selecciona una categoría para ver los productos y precios. Los precios son informativos y pueden variar.</p>
+
+    <!-- Pestañas de categoría -->
+    <div class="cat-tabs">
+      <button class="cat-tab active" onclick="showCat('tinacos', this)">💧 Tinacos y Cisternas</button>
+      <button class="cat-tab" onclick="showCat('colchon', this)">🛏 Colchones</button>
+      <button class="cat-tab" onclick="showCat('solar', this)">☀️ Calentadores</button>
+      <button class="cat-tab" onclick="showCat('bombas', this)">⚙️ Bombas</button>
+      <button class="cat-tab" onclick="showCat('cocina', this)">🍳 Cocina</button>
+      <button class="cat-tab" onclick="showCat('otros', this)">🔧 Otros</button>
+    </div>
+
+    <!-- Tinacos y Cisternas -->
+    <div class="catalog-section active" id="cat-tinacos">
+      <div class="products-grid">
+       <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card-top">
+    <img src="img/tinaco.png" alt="Cisterna 1200 litros">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Cisterna 1,200 Lts</h4>
+    <div class="product-price">$1,800.00</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+
+    <ul>
+      <li>Capacidad: 1,200 litros</li>
+      <li>Material: Polietileno de alta resistencia</li>
+      <li>tricapa anti rayos uv</li>
+    </ul>
+  </div>
+
+</div>
+
+        <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card-top">
+    <img src="img/tinaco.png" alt="Cisterna 1200 litros">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Cisterna 2800 Lts</h4>
+    <div class="product-price">$6,700</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+
+    <ul>
+      <li>Capacidad: 2,800 litros</li>
+      <li>Material: Polietileno de alta resistencia</li>
+      <li>Uso: Almacenamiento de agua</li>
+      <li>Material: Polietileno de alta resistencia</li>
+      <li>tricapa anti rayos uv</li>
+    </ul>
+  </div>
+
+</div>
+        <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card-top">
+    <img src="img/tinaco.png" alt="Cisterna 1200 litros">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Cisterna 5,000 Lts</h4>
+    <div class="product-price">$10,700</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+
+    <ul>
+      <li>Capacidad: 5,000 litros</li>
+      <li>Material: Polietileno de alta resistencia</li>
+      <li>Uso: Almacenamiento de agua</li>
+     <li>Material: Polietileno de alta resistencia</li>
+      <li>tricapa anti rayos uv</li>
+    </ul>
+  </div>
+
+</div>
+        <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card-top">
+    <img src="img/tinaco.png" alt="Cisterna 1200 litros">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Cisterna 10,000 Lts</h4>
+    <div class="product-price">$15,700</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+
+    <ul>
+      <li>Capacidad: 10,000 litros</li>
+      <li>Material: Polietileno de alta resistencia</li>
+      <li>Uso: Almacenamiento de agua</li>
+      <li>Material: Polietileno de alta resistencia</li>
+      <li>tricapa anti rayos uv</li>
+    </ul>
+  </div>
+
+</div>
+      
+      </div>
+    </div>
+
+    <!-- Colchón -->
+    <div class="catalog-section" id="cat-colchon">
+      <div class="products-grid">
+        <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card" onclick="toggleProduct(this)">
+  <div class="product-card-top">
+    <img src="img/colchonlugo.png" alt="colchon lugo individual">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Colchón Lugo Individual</h4>
+    <div class="product-price">$2,800.00</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+    <ul>
+      <li>Tamaño: Individual</li>
+      <li>Ideal para una persona</li>
+      <li>Material acolchado de alta resistencia</li>
+      <li>Brinda comodidad y soporte para el descanso</li>
+      <li>Pago en parcialidades disponible</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+        <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card-top">
+    <img src="img/colchonlugo.png" alt="colchon matrimonial">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Colchón Lugo Matrimonial</h4>
+    <div class="product-price">$3,050.00</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+    <ul>
+      <li>Tamaño: Matrimonial</li>
+      <li>Ideal para dos personas</li>
+      <li>Diseño confortable para un descanso adecuado</li>
+      <li>Material acolchado de alta resistencia</li>
+      <li>Brinda soporte y comodidad durante el sueño</li>
+      <li>Pago en parcialidades disponible</li>
+      <li>Entrega a finales de cada mes</li>
+    </ul>
+  </div>
+
+</div>
+        <div class="product-card" onclick="toggleProduct(this)">
+
+  <div class="product-card-top">
+    <img src="img/colchonlugo.png" alt="colchon lugo king size">
+  </div>
+
+  <div class="product-card-body">
+    <h4>Colchón Lugo King Size</h4>
+    <div class="product-price">$4,350.00</div>
+  </div>
+
+  <div class="product-extra">
+    <strong>Información adicional</strong>
+    <ul>
+      <li>Tamaño: King Size</li>
+      <li>Ideal para dos personas</li>
+      <li>Mayor espacio y comodidad para el descanso</li>
+      <li>Material acolchado de alta resistencia</li>
+      <li>Excelente soporte y durabilidad</li>
+      <li>Pago en parcialidades disponible</li>
+      <li>Entrega a finales de cada mes</li>
+    </ul>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+    <!-- Solar -->
+<div class="catalog-section" id="cat-solar">
+  <div class="products-grid">
+
+    <!-- 8 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 8 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 8 Tubos</h4>
+        <div class="product-price">$3,140.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 80 litros</li>
+          <li>Ideal para 1 o 2 personas</li>
+          <li>Ahorro en consumo de gas</li>
+          <li>Material resistente a la intemperie</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 10 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 10 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 10 Tubos</h4>
+        <div class="product-price">$3,440.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 100 litros</li>
+          <li>Ideal para 2 personas</li>
+          <li>Reduce el gasto de gas LP</li>
+          <li>Fácil mantenimiento</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 12 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 12 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 12 Tubos</h4>
+        <div class="product-price">$3,850.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 120 litros</li>
+          <li>Ideal para 2 a 3 personas</li>
+          <li>Aprovecha la energía solar</li>
+          <li>Fabricado con materiales duraderos</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 15 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 15 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 15 Tubos</h4>
+        <div class="product-price">$4,400.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 150 litros</li>
+          <li>Ideal para familias de 3 personas</li>
+          <li>Disminuye costos de energía</li>
+          <li>Alta eficiencia térmica</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 18 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 18 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 18 Tubos</h4>
+        <div class="product-price">$5,150.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 180 litros</li>
+          <li>Ideal para 3 a 4 personas</li>
+          <li>Excelente rendimiento</li>
+          <li>Bajo mantenimiento</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 20 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 20 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 20 Tubos</h4>
+        <div class="product-price">$5,550.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 200 litros</li>
+          <li>Ideal para familias de 4 personas</li>
+          <li>Ahorro significativo de gas</li>
+          <li>Diseño resistente y duradero</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 24 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 24 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 24 Tubos</h4>
+        <div class="product-price">$6,450.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 240 litros</li>
+          <li>Ideal para familias de 4 a 5 personas</li>
+          <li>Mayor producción de agua caliente</li>
+          <li>Estructura galvanizada</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 30 Tubos -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/calentadorsolar.png" alt="Calentador Solar 30 Tubos">
+      </div>
+      <div class="product-card-body">
+        <h4>Calentador Solar 30 Tubos</h4>
+        <div class="product-price">$7,700.00</div>
+      </div>
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad aproximada: 300 litros</li>
+          <li>Ideal para familias numerosas</li>
+          <li>Máximo aprovechamiento de energía solar</li>
+          <li>Alta capacidad de almacenamiento</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+   <!-- Bombas -->
+<div class="catalog-section" id="cat-bombas">
+  <div class="products-grid">
+
+    <!-- Bomba Pretul -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/bombapretul.png" alt="Bomba Pretul ½ HP">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Bomba Pretul ½ HP</h4>
+        <div class="product-price">$500.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Potencia: ½ HP</li>
+          <li>Ideal para uso doméstico</li>
+          <li>Diseñada para suministro y traslado de agua</li>
+          <li>Construcción resistente para larga duración</li>
+          <li>Fácil instalación y mantenimiento</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bomba Truper -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/bombatruper.png" alt="Bomba Truper 1 HP">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Bomba Truper 1 HP</h4>
+        <div class="product-price">$1,450.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Potencia: 1 HP</li>
+          <li>Mayor capacidad de bombeo</li>
+          <li>Ideal para hogares, cisternas y tinacos</li>
+          <li>Motor de alto rendimiento</li>
+          <li>Fabricada con materiales resistentes</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Cocina -->
+<div class="catalog-section" id="cat-cocina">
+  <div class="products-grid">
+
+    <!-- Juego de ollas 8 piezas -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/cacerolas.png" alt="ollas 8 piezas">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Juego de ollas 8 pz</h4>
+        <div class="product-price">$1,500.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Juego completo de 8 piezas</li>
+          <li>Ideal para uso doméstico</li>
+          <li>Material resistente al calor</li>
+          <li>Fácil limpieza y mantenimiento</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Juego de cacerolas 12 piezas -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/cacerolas.png" alt="cacerolas 12 piezas">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Juego de cacerolas 12 pz</h4>
+        <div class="product-price">$1,360.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Juego completo de 12 piezas</li>
+          <li>Incluye diferentes tamaños</li>
+          <li>Ideal para familias</li>
+          <li>Material duradero y resistente</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Juego de cacerolas 6 piezas -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/cacerolas.png" alt="cacerolas 6 piezas">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Juego de cacerolas 6 pz</h4>
+        <div class="product-price">$1,200.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Juego práctico de 6 piezas</li>
+          <li>Ideal para cocinas pequeñas</li>
+          <li>Material resistente al uso diario</li>
+          <li>Fácil almacenamiento</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Olla exprés -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/ollaexpresexco.png" alt="Olla exprés 6 litros">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Olla exprés 6 litros</h4>
+        <div class="product-price">$800.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Capacidad: 6 litros</li>
+          <li>Cocción rápida y eficiente</li>
+          <li>Ideal para preparar alimentos en menos tiempo</li>
+          <li>Sistema de seguridad integrado</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tarja -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/tarja.png" alt="Tarja 0.50 x 1 metro">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Tarja 0.50×1m + accesorios</h4>
+        <div class="product-price">$1,000.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Medidas: 0.50 x 1.00 metros</li>
+          <li>Incluye accesorios básicos</li>
+          <li>Ideal para cocinas domésticas</li>
+          <li>Material resistente a la humedad</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Parrilla + tanque -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/tanquedegas+parrilla.png" alt="Parrilla y tanque">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Parrilla + tanque 20kg + accesorios</h4>
+        <div class="product-price">$2,800.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Incluye parrilla y tanque de 20 kg</li>
+          <li>Accesorios básicos incluidos</li>
+          <li>Ideal para cocina doméstica</li>
+          <li>Equipo práctico y funcional</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+    <!-- Otros -->
+<div class="catalog-section" id="cat-otros">
+  <div class="products-grid">
+
+    <!-- Kit de jardín -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/kitjardineria.png" alt="Kit de jardín">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Kit de jardín (9 pz)</h4>
+        <div class="product-price">$1,850.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Incluye 9 herramientas para jardinería</li>
+          <li>Material resistente y duradero</li>
+          <li>Ideal para mantenimiento de jardines y áreas verdes</li>
+          <li>Fácil almacenamiento y transporte</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Lavadora / Plancha -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/lavadora+plancha.png" alt="Lavadora y plancha">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Lavadora / Plancha</h4>
+        <div class="product-price">$3,600.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Ideal para las necesidades del hogar</li>
+          <li>Equipo práctico y funcional</li>
+          <li>Fácil instalación y uso</li>
+          <li>Diseño compacto y resistente</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Molino de maíz -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/molinodemaiz.png" alt="Molino de maíz">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Molino de maíz 1CP</h4>
+        <div class="product-price">$6,600.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Motor de 1 caballo de potencia</li>
+          <li>Ideal para molienda de maíz y granos</li>
+          <li>Estructura robusta de larga duración</li>
+          <li>Uso doméstico y comercial</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Impermeabilizante -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/impermeabilizante .png" alt="Impermeabilizante">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Impermeabilizante</h4>
+        <div class="product-price">$1,000.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Protección contra filtraciones y humedad</li>
+          <li>Ideal para techos y azoteas</li>
+          <li>Alta resistencia a la intemperie</li>
+          <li>Fácil aplicación</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tubo solar -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/tubosolar.png" alt="Tubo solar">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Tubo solar</h4>
+        <div class="product-price">$200.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Compatible con calentadores solares</li>
+          <li>Fabricado con materiales resistentes</li>
+          <li>Excelente captación de calor</li>
+          <li>Fácil reemplazo e instalación</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Láminas galvanizadas -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/laminagalvanizada.png" alt="Láminas galvanizadas">
+      </div>
+
+      <div class="product-card-body">
+        <h4>10 láminas Gal C-28</h4>
+        <div class="product-price">$2,500.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Paquete de 10 láminas galvanizadas</li>
+          <li>Calibre 28 de alta resistencia</li>
+          <li>Ideales para techos y construcciones</li>
+          <li>Protección contra corrosión</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Burro de planchar -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/burro.png" alt="Burro de planchar">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Burro de planchar</h4>
+        <div class="product-price">$700.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Superficie amplia para planchado cómodo</li>
+          <li>Estructura metálica resistente</li>
+          <li>Plegable para fácil almacenamiento</li>
+          <li>Ideal para uso doméstico</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Juego de baño -->
+    <div class="product-card" onclick="toggleProduct(this)">
+      <div class="product-card-top">
+        <img src="img/juegodebaño.png" alt="Juego de baño">
+      </div>
+
+      <div class="product-card-body">
+        <h4>Juego de baño</h4>
+        <div class="product-price">$1,450.00</div>
+      </div>
+
+      <div class="product-extra">
+        <strong>Información adicional</strong>
+        <ul>
+          <li>Juego completo para instalación en baño</li>
+          <li>Material resistente y de larga duración</li>
+          <li>Diseño práctico y funcional</li>
+          <li>Ideal para viviendas nuevas o remodelaciones</li>
+          <li>Pago en parcialidades disponible</li>
+          <li>Entrega a finales de cada mes</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== PROCESO ===================== -->
+<section id="proceso">
+  <div class="section-inner">
+    <p class="section-label">Guía paso a paso</p>
+    <h2 class="section-title">Proceso de adquisición</h2>
+    <p class="section-sub">El proceso es sencillo y transparente. Sigue estos pasos para obtener tu producto.</p>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>📋 Registro</h3>
+          <p>Acude al Área de Bienestar del Ayuntamiento y proporciona los siguientes datos:</p>
+          <ul>
+            <li>Nombre completo</li>
+            <li>INE (Credencial para votar vigente)</li>
+            <li>Dos números de teléfono de contacto</li>
+            <li>Producto que deseas adquirir</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>💰 Pago en parcialidades</h3>
+          <p>El pago se realiza en <strong>parcialidades acordadas</strong> con el personal del área, adaptadas a tus posibilidades económicas. Por cada pago realizado se te entrega una nota como comprobante.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>📦 Entrega del producto</h3>
+          <p>Las entregas se realizan a <strong>finales de cada mes</strong>. La fecha exacta dependerá del costo total del producto adquirido y del estado de tus pagos. Se te notificará con anticipación.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APOYOS ===================== -->
+<section id="apoyos">
+  <div class="section-inner">
+    <p class="section-label">Programas sociales</p>
+    <h2 class="section-title">Apoyos disponibles para la comunidad</h2>
+    <p class="section-sub">Además del catálogo de productos, el Área de Bienestar ofrece los siguientes programas de apoyo social.</p>
+    <div class="apoyos-grid">
+      <div class="apoyo-card">
+        <div class="apoyo-icon">💼</div>
+        <h3>Microcréditos a la comunidad</h3>
+        <p>Financiamiento accesible para emprendedores y familias del municipio que requieren capital para actividades productivas dirigidos a mujeres trabajadoras o a formal/sinonimos(taxistas).</p>
+      </div>
+      <div class="apoyo-card">
+        <div class="apoyo-icon">🌧️</div>
+        <h3>Apoyo en desastres naturales</h3>
+        <p>Asistencia inmediata a familias afectadas por inundaciones, sismos u otros fenómenos naturales que pongan en riesgo el hogar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">Preguntas frecuentes</p>
+    <h2 class="section-title">¿Tienes dudas?</h2>
+    <p class="section-sub">Respondemos las preguntas más comunes sobre nuestros productos y servicios.</p>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Puedo pagar en línea? <span class="icon">+</span></button>
+        <div class="faq-a">No. Este sitio es únicamente informativo. Los pagos se realizan de manera presencial en el Área de Bienestar del Ayuntamiento de Hueypoxtla. No se aceptan pagos en línea ni por transferencia bancaria a través de este portal.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuándo se entregan los productos? <span class="icon">+</span></button>
+        <div class="faq-a">Las entregas se realizan a finales de cada mes. La fecha exacta depende del costo total del producto y del avance en los pagos. El personal del Área de Bienestar te notificará con anticipación.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuántos pagos puedo hacer? <span class="icon">+</span></button>
+        <div class="faq-a">El número de parcialidades se acuerda directamente con el personal del Área de Bienestar, tomando en cuenta el costo del producto y las posibilidades del comprador. Por cada pago se entrega una nota de comprobante.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Qué documentos necesito para registrarme? <span class="icon">+</span></button>
+        <div class="faq-a">Necesitas presentar tu nombre completo, tu credencial INE vigente y dos números telefónicos de contacto, además de indicar el producto que deseas adquirir.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Puedo adquirir más de un producto? <span class="icon">+</span></button>
+        <div class="faq-a">Para conocer la disponibilidad y condiciones para adquirir más de un producto, te recomendamos acudir directamente al Área de Bienestar donde el personal te orientará.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Los precios incluyen instalación? <span class="icon">+</span></button>
+        <div class="faq-a">Los precios mostrados en el catálogo corresponden únicamente al producto. Para conocer si se incluye instalación en algún artículo específico, consulta directamente en el Área de Bienestar.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section id="contacto">
+  <div class="section-inner">
+    <p class="section-label">Ubícanos</p>
+    <h2 class="section-title">Contacto y ubicación</h2>
+    <p class="section-sub">Visítanos en el Ayuntamiento de Hueypoxtla o comunícate con nosotros.</p>
+    <div class="contacto-grid">
+      <div class="contacto-card">
+        <div class="c-icon">📍</div>
+        <h4>Dirección</h4>
+        <p>Palacio Municipal, Hueypoxtla, Estado de México.</p>
+      </div>
+      <div class="contacto-card">
+        <div class="c-icon">🕐</div>
+        <h4>Horario de atención</h4>
+        <p>Lunes a Viernes<br>9:00 am – 5:00 pm</p>
+      </div>
+      <div class="contacto-card">
+        <div class="c-icon">📞</div>
+        <h4>Teléfono</h4>
+        <p>Consulta el número de contacto directamente en el Ayuntamiento.</p>
+      </div>
+      <div class="contacto-card">
+        <div class="c-icon">ℹ️</div>
+        <h4>Aviso importante</h4>
+        <p>Este sitio es informativo. No se realizan trámites ni pagos en línea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <p><strong>Ayuntamiento de Hueypoxtla – Área de Bienestar</strong></p>
+  <p style="margin-top:.4rem;">Sitio únicamente informativo. Todos los derechos reservados © 2024.<br>
+  Los precios son referenciales y pueden modificarse sin previo aviso.</p>
+</footer>
+
+<!-- ===================== JS ===================== -->
+<script>
+  /* Menú hamburguesa */
+  function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  /* Filtro de categorías */
+  function showCat(cat, btn) {
+    document.querySelectorAll('.catalog-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('cat-' + cat).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  /* FAQ acordeón */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+  function toggleProduct(card) {
+
+  const abierto = card.classList.contains("active");
+
+  document.querySelectorAll(".product-card").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  if(!abierto){
+    card.classList.add("active");
+  }
+
+}
+
+</script>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+<style>
+/* SOLO ESTILOS QUE REALMENTE RESPETA */
+:root {
+	--chat--color-primary: #00ff88;
+	--chat--color-primary-shade-50: #00cc6a;
+	--chat--color-primary-shade-100: #00994d;
+
+	--chat--color-secondary: #0d0d0d;
+	--chat--color-background: #0d0d0d;
+	--chat--color-text: #ffffff;
+}
+
+/* Fondo general */
+body {
+	background: #eff1ee;
+}
+</style>
+
+<script type="module">
+import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+createChat({
+	webhookUrl: 'http://localhost:5678/webhook/chat-webhook-agente-ia/chat',
+
+	initialMessages: [
+		'👋 Hola, soy tu asistente '
+	],
+
+	theme: {
+		primaryColor: '#00ff88',
+		position: 'right'
+	}
+});
+</script>
+</body>
+</html>
