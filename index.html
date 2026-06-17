@@ -1649,40 +1649,306 @@
 
 </script>
 <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-
 <style>
-/* SOLO ESTILOS QUE REALMENTE RESPETA */
-:root {
-	--chat--color-primary: #00ff88;
-	--chat--color-primary-shade-50: #00cc6a;
-	--chat--color-primary-shade-100: #00994d;
+    :root {
+        --primary-color: #7A1C41; 
+        --secondary-color: #D4AF37; 
+        --bg-light: #f4f6f9;
+        --text-dark: #333333;
+    }
 
-	--chat--color-secondary: #0d0d0d;
-	--chat--color-background: #0d0d0d;
-	--chat--color-text: #ffffff;
-}
+    #chatbot-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999999 !important; 
+        font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
 
-/* Fondo general */
-body {
-	background: #eff1ee;
-}
+    #chatbot-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        cursor: pointer;
+        font-size: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+    }
+
+    #chatbot-button:hover {
+        transform: scale(1.1);
+    }
+
+    #chatbot-window {
+        display: none; 
+        width: 340px;
+        height: 480px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+        position: fixed;
+        bottom: 95px; 
+        right: 20px;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 999999 !important;
+    }
+
+    #chatbot-header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid var(--secondary-color);
+    }
+
+    #chatbot-header .subtitle {
+        font-size: 11px;
+        font-weight: normal;
+        display: block;
+        opacity: 0.9;
+    }
+
+    #chatbot-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    #chatbot-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: var(--bg-light);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .message {
+        max-width: 85%;
+        padding: 10px 14px;
+        border-radius: 15px;
+        font-size: 14px;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .message.bot {
+        background-color: white;
+        color: var(--text-dark);
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .message.user {
+        background-color: var(--primary-color);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 5px;
+    }
+
+    #chatbot-input-container {
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    #chatbot-input {
+        flex: 1;
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        border-radius: 20px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    #chatbot-send {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0 12px;
+        margin-left: 8px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+    }
 </style>
 
-<script type="module">
-import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+<div id="chatbot-widget">
+    <button id="chatbot-button">💬</button>
+    
+    <div id="chatbot-window">
+        <div id="chatbot-header">
+            <div>
+                <span>Asistente de Bienestar</span>
+                <span class="subtitle">Ayuntamiento de Hueypoxtla</span>
+            </div>
+            <button id="chatbot-close" onclick="toggleChat()">×</button>
+        </div>
+        <div id="chatbot-messages">
+            <div class="message bot">¡Hola! Soy el asistente virtual del Área de Bienestar de Hueypoxtla. ¿En qué te puedo ayudar hoy?</div>
+        </div>
+        <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta aquí..." onkeypress="checkEnter(event)">
+            <button id="chatbot-send" onclick="sendMessage()">➔</button>
+        </div>
+    </div>
+</div>
 
-createChat({
-	webhookUrl: 'http://localhost:5678/webhook/chat-webhook-agente-ia/chat',
+<script>
+    const HUEYPOXTLA_CONTEXT = `
+    CONTEXTO GENERAL DEL SITIO WEB
+    Nombre del proyecto: Área de Bienestar – Ayuntamiento de Hueypoxtla
+    Descripción: El sitio pertenece al Área de Bienestar del Ayuntamiento de Hueypoxtla. Su objetivo es informar a la ciudadanía sobre programas de apoyo, productos subsidiados y servicios disponibles para mejorar la calidad de vida familiar. Permite conocer beneficios, consultar precios, revisar características y solicitar información para contacto vía WhatsApp.
 
-	initialMessages: [
-		'👋 Hola, soy tu asistente '
-	],
+    Información institucional: El Área de Bienestar acerca apoyos y programas para el desarrollo social, ofreciendo productos de primera necesidad y artículos para el hogar con subsidio social.
 
-	theme: {
-		primaryColor: '#00ff88',
-		position: 'right'
-	}
-});
+    CATÁLOGO DE PRODUCTOS Y PRECIOS OFICIALES:
+    
+    * TINACOS Y CISTERNAS:
+      - Tinaco 1,200 Lts — $1,800.00
+      - Tinaco Beige 1,200 Lts — $1,900.00 (Mismo modelo base + $100 extra)
+      - Tinaco 2,800 Lts — $6,700.00
+      - Tinaco 5,000 Lts — $10,700.00
+      - Tinaco 10,000 Lts — $15,700.00
+
+    * 1. COLCHONES (Características: Diseñados para comodidad y descanso, materiales resistentes y duraderos, uso doméstico, disponibles mediante programas de apoyo social):
+      - Colchón Individual
+      - Colchón Matrimonial
+      - Colchón Queen Size
+      - Colchón King Size
+
+    * 2. CALENTADORES SOLARES (Características: Aprovechan energía solar, ahorro de gas, materiales resistentes, aptos para diferentes tamaños de familia, cuidan el medio ambiente):
+      - Calentador Solar 8 Tubos — $3,140
+      - Calentador Solar 10 Tubos — $3,440
+      - Calentador Solar 12 Tubos — $3,850
+      - Calentador Solar 15 Tubos — $4,400 (Recomendado para familias de 4 personas)
+      - Calentador Solar 18 Tubos — $5,150
+      - Calentador Solar 20 Tubos — $5,550
+      - Calentador Solar 24 Tubos — $6,450
+      - Calentador Solar 30 Tubos — $7,700
+
+    * 3. BOMBAS DE AGUA (Características: Suministro y distribución de agua, uso doméstico, fácil instalación, marcas reconocidas):
+      - Bomba Pretul ½ HP — $500
+      - Bomba Truper 1 HP — $1,450
+
+    * 4. COCINA (Características: Diseñados para equipar cocinas familiares, materiales resistentes, uso doméstico, buena relación calidad-precio):
+      - Juego de ollas 8 piezas — $1,500
+      - Juego de cacerolas 12 piezas — $1,360
+      - Juego de cacerolas 6 piezas — $1,200
+      - Olla exprés 6 litros — $800
+      - Tarja 0.50 x 1 metro con accesorios — $1,000
+      - Parrilla + tanque de gas de 20 kg + accesorios — $2,800
+
+    * 5. OTROS PRODUCTOS (Características: Para el hogar, construcción y mantenimiento, mejoran condiciones de vida, disponibles mediante programas de apoyo):
+      - Kit de jardín 9 piezas — $1,850
+      - Lavadora / Plancha — $3,600
+      - Molino de maíz 1CP — $6,600
+      - Impermeabilizante — $1,000
+      - Tubo solar — $200
+      - 10 Láminas Galvanizadas C-28 — $2,500
+      - Burro de planchar — $700
+      - Juego de baño — $1,450 (Incluye taza, tanque, lavabo y accesorios básicos)
+
+    COMPORTAMIENTO DEL ASISTENTE:
+    - Responde de forma amable, clara, respetuosa y profesional.
+    - Proporciona información exacta sobre los productos, precios y características descritos arriba.
+    - Orienta sobre apoyos y recomienda productos según las necesidades del usuario (ej. para 4 personas, el calentador de 15 tubos).
+    - Invita cordialmente a contactar al Área de Bienestar para solicitudes o detalles específicos.
+    - Si te preguntan algo que NO está aquí o no dispones de la información específica, debes indicar amablemente que el usuario puede comunicarse directamente con el Área de Bienestar del Ayuntamiento de Hueypoxtla para recibir atención personalizada.
+    `;
+
+    let chatHistory = [{ role: "system", content: HUEYPOXTLA_CONTEXT }];
+
+    function toggleChat() {
+        const chatWindow = document.getElementById('chatbot-window');
+        const chatInput = document.getElementById('chatbot-input');
+        
+        if (!chatWindow) return;
+
+        if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+            chatWindow.style.display = 'flex';
+            setTimeout(() => { if (chatInput) chatInput.focus(); }, 50);
+        } else {
+            chatWindow.style.display = 'none';
+        }
+    }
+
+    function checkEnter(event) {
+        if (event.key === 'Enter') sendMessage();
+    }
+
+    async function sendMessage() {
+        const inputElement = document.getElementById('chatbot-input');
+        const messageText = inputElement.value.trim();
+        if (messageText === '') return;
+
+        appendMessage(messageText, 'user');
+        inputElement.value = '';
+        chatHistory.push({ role: "user", content: messageText });
+
+        const typingId = appendMessage("Escribiendo...", 'bot');
+
+        try {
+            const response = await fetch('api-chatbot.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    messages: chatHistory
+                })
+            });
+
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
+
+            const botResponse = data.choices[0].message.content;
+            document.getElementById(typingId).remove();
+            appendMessage(botResponse, 'bot');
+            chatHistory.push({ role: "assistant", content: botResponse });
+
+        } catch (error) {
+            console.error("Error:", error);
+            if(document.getElementById(typingId)) document.getElementById(typingId).remove();
+            appendMessage("Lo siento, tengo problemas para conectarme en este momento. Por favor, comunícate directamente con el Área de Bienestar.", 'bot');
+        }
+    } // <-- ¡Esta es la llave que faltaba y causaba que todo se pusiera gris!
+
+    function appendMessage(text, sender) {
+        const messageContainer = document.getElementById('chatbot-messages');
+        const messageElement = document.createElement('div');
+        const id = 'msg-' + Date.now();
+        
+        messageElement.id = id;
+        messageElement.classList.add('message', sender);
+        messageElement.innerText = text;
+        
+        messageContainer.appendChild(messageElement);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+        return id;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const botonChat = document.getElementById("chatbot-button");
+        if (botonChat) {
+            botonChat.addEventListener("click", toggleChat);
+        }
+    });
 </script>
 </body>
 </html>
