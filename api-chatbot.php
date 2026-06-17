@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // 2. Tu API Key se queda segura aquí en el servidor (Nadie la puede ver desde el navegador)
-$api_key = "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"; 
+$api_key = "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"; 
 
 // 3. Recibir la pregunta y el historial del chatbot
 $input = json_decode(file_get_contents("php://input"), true);
