@@ -1246,7 +1246,7 @@
     <!-- Parrilla + tanque -->
     <div class="product-card" onclick="toggleProduct(this)">
       <div class="product-card-top">
-        <img src="img/tanquedegas+parrilla.png" alt="Parrilla y tanque">
+        <img src="img/tanquedegasparrilla.png" alt="Parrilla y tanque">
       </div>
 
       <div class="product-card-body">
@@ -1300,7 +1300,7 @@
     <!-- Lavadora / Plancha -->
     <div class="product-card" onclick="toggleProduct(this)">
       <div class="product-card-top">
-        <img src="img/lavadora+plancha.png" alt="Lavadora y plancha">
+        <img src="img/lavadoraplancha.png" alt="Lavadora y plancha">
       </div>
 
       <div class="product-card-body">
@@ -1892,7 +1892,7 @@
         if (event.key === 'Enter') sendMessage();
     }
 
-    async function sendMessage() {
+   async function sendMessage() {
         const inputElement = document.getElementById('chatbot-input');
         const messageText = inputElement.value.trim();
         if (messageText === '') return;
@@ -1904,18 +1904,14 @@
         const typingId = appendMessage("Escribiendo...", 'bot');
 
         try {
-            // Cambiado a conexión directa con Groq para compatibilidad total con Vercel
-            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            // Llamada segura a la Serverless Function de Vercel
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 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' // <--- PON TU CLAVE AQUÍ
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: "llama-3.3-70b-versatile",
-                    messages: chatHistory,
-                    temperature: 0.4,
-                    max_tokens: 1024
+                    messages: chatHistory
                 })
             });
 
