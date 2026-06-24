@@ -1905,7 +1905,7 @@
         const typingId = appendMessage("Escribiendo...", 'bot');
 
         try {
-            // Conectamos a tu ruta local de Vercel, eliminando el bloqueo de Groq
+            // Se conecta de forma local a tu carpeta api en Vercel
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
@@ -1918,7 +1918,7 @@
 
             const data = await response.json();
             
-            // Si el servidor nos devuelve un error, lo atrapamos
+            // Si el backend nos reporta un error, lo lanzamos al catch
             if (data.error) throw new Error(data.error);
 
             const botResponse = data.choices[0].message.content;
