@@ -4,12 +4,14 @@ export default async function handler(req, res) {
     }
 
     try {
+        // Vercel jala la API Key en secreto desde tus Environment Variables
         const apiKey = process.env.GROQ_API_KEY;
 
         if (!apiKey) {
             return res.status(500).json({ error: 'La API Key no está configurada en Vercel' });
         }
 
+        // El servidor de Vercel hace la petición directa a Groq de forma segura
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -28,6 +30,7 @@ export default async function handler(req, res) {
         return res.status(200).json(data);
 
     } catch (error) {
+        // Si Groq falla o la llave no sirve, este catch le avisa al index.html
         return res.status(500).json({ error: error.message });
     }
 }
