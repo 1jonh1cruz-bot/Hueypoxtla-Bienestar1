@@ -1,8 +1,6 @@
-
 export default async function handler(req, res) {
-    // 1. Aquí controlamos que acepte el método POST que manda tu index.html
     if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Método no permitido. Usa POST.' });
+        return res.status(405).json({ error: 'Método no permitido' });
     }
 
     try {
@@ -12,7 +10,6 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'La API Key no está configurada en Vercel' });
         }
 
-        // 2. Conexión segura con Groq
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
             headers: {
